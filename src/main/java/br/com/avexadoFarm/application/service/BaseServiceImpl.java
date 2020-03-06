@@ -1,6 +1,7 @@
 package br.com.avexadoFarm.application.service;
 
 import br.com.avexadoFarm.domain.service.BaseService;
+import br.com.avexadoFarm.infrastructure.exception.ObjectNotFoundException;
 import br.com.avexadoFarm.infrastructure.repository.BaseRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,7 @@ public abstract class BaseServiceImpl<T, ID extends Serializable> implements Bas
         Optional<T> entidade = getRepository().findById(id);
 
         if(!entidade.isPresent()) {
-            throw new EntityNotFoundException();
+            throw new ObjectNotFoundException("Objeto não encontrado !");
         }
         return entidade.get();
     }
