@@ -37,4 +37,10 @@ public class ProdutoController {
                 converter(produtoSalvo, ProdutoResponseDTO.class);
         return ResponseEntity.ok(produtoResponseDTO);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoResponseDTO> findById(@PathVariable Long id) {
+        Produto produto = produtoServiceImpl.findById(id);
+        return ResponseEntity.ok(converterService.converter(produto, ProdutoResponseDTO.class));
+    }
 }
