@@ -1,4 +1,4 @@
-package br.com.avexadoFarm.domain.enumerattion;
+package br.com.avexadoFarm.domain.enumeration;
 
 public enum TipoProduto {
 

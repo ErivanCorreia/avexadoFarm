@@ -7,7 +7,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import javax.persistence.EntityNotFoundException;
 import java.io.Serializable;
 import java.util.Optional;
 
@@ -36,7 +35,7 @@ public abstract class BaseServiceImpl<T, ID extends Serializable> implements Bas
     @Override
     public T update(ID id, T entity) {
         T entidade = findById(id);
-        BeanUtils.copyProperties(entity, entidade);
+        BeanUtils.copyProperties(entity, entidade, "id");
         return getRepository().save(entidade);
     }
 

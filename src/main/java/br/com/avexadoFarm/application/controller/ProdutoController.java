@@ -45,8 +45,17 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delepeById(@PathVariable Long id) {
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
         produtoServiceImpl.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProdutoResponseDTO> update(@PathVariable Long id,
+            @RequestBody ProdutoResponseDTO produtoRequestDTO) {
+        Produto produto = converterService.converter(produtoRequestDTO, Produto.class);
+        Produto produtoAtualizado = produtoServiceImpl.update(id, produto);
+
+        return ResponseEntity.ok().body(converterService.converter(produtoAtualizado, ProdutoResponseDTO.class));
     }
 }

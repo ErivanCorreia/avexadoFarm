@@ -1,6 +1,6 @@
 package br.com.avexadoFarm.domain.model;
 
-import br.com.avexadoFarm.domain.enumerattion.TipoProduto;
+import br.com.avexadoFarm.domain.enumeration.TipoProduto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,7 +14,7 @@ public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idProduto;
+    private Long id;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -41,12 +41,12 @@ public class Produto implements Serializable {
     }
 
 
-    public Long getIdProduto() {
-        return idProduto;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdProduto(Long idProduto) {
-        this.idProduto = idProduto;
+    public void setId(Long idProduto) {
+        this.id = idProduto;
     }
 
     public TipoProduto getTipo() {
