@@ -22,7 +22,7 @@ public abstract class BaseServiceImpl<T, ID extends Serializable> implements Bas
         Optional<T> entidade = getRepository().findById(id);
 
         if(!entidade.isPresent()) {
-            throw new ObjectNotFoundException("Objeto não encontrado !");
+            throw new ObjectNotFoundException();
         }
         return entidade.get();
     }
