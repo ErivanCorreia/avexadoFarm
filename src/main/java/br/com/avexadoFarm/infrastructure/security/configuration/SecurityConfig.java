@@ -1,4 +1,4 @@
-package br.com.avexadoFarm.application.configuration;
+package br.com.avexadoFarm.infrastructure.security.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
