@@ -13,7 +13,7 @@ public class ProdutoServiceImpl extends BaseServiceImpl<Produto, Long> {
     private ProdutoRepository produtoRepository;
 
     @Override
-    protected BaseRepository<Produto, Long> getRepository() {
+    protected ProdutoRepository getRepository() {
         return produtoRepository;
     }
 }
