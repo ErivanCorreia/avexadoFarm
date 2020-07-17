@@ -1,4 +1,4 @@
-package br.com.avexadoFarm.presentation;
+package br.com.avexadoFarm.presentation.dto.produto;
 
 import br.com.avexadoFarm.domain.enumeration.TipoProduto;
 
