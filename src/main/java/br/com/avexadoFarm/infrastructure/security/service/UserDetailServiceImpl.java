@@ -19,13 +19,13 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class UserDatailServiceImpl implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+    public UserDetail loadUserByUsername(String login) throws UsernameNotFoundException {
 
         Optional<Usuario> usuario = usuarioRepository.findByLogin(login);
         if (!usuario.isPresent()) {
