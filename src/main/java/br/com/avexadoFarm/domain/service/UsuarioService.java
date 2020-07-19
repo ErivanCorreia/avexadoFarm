@@ -1,6 +1,6 @@
 package br.com.avexadoFarm.domain.service;
 
-import br.com.avexadoFarm.domain.model.Usuario;
+import br.com.avexadoFarm.domain.model.usuario.Usuario;
 
 public interface UsuarioService extends BaseService<Usuario, Long> {
 

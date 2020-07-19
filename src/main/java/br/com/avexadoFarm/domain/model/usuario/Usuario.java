@@ -34,6 +34,7 @@ public class Usuario implements Serializable {
     @NotNull
     @Enumerated(EnumType.STRING)
     @ElementCollection
+    @Fetch(FetchMode.JOIN)
     @JoinTable(name = "t_perfil_usuario", joinColumns = @JoinColumn(name = "id_usuario"))
     @Column(name = "perfil")
     private Set<Perfil> perfis = new HashSet<>();
