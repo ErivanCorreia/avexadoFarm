@@ -1,14 +1,12 @@
 package br.com.avexadoFarm.infrastructure.security.service;
 
-import br.com.avexadoFarm.domain.enumeration.Perfil;
-import br.com.avexadoFarm.domain.model.Usuario;
+import br.com.avexadoFarm.domain.model.usuario.Usuario;
 import br.com.avexadoFarm.infrastructure.exception.ObjectNotFoundException;
 import br.com.avexadoFarm.infrastructure.repository.UsuarioRepository;
 import br.com.avexadoFarm.infrastructure.security.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

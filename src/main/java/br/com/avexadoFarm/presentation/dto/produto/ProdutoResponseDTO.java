@@ -1,6 +1,6 @@
 package br.com.avexadoFarm.presentation.dto.produto;
 
-import br.com.avexadoFarm.domain.enumeration.TipoProduto;
+import br.com.avexadoFarm.domain.model.produto.TipoProduto;
 
 public class ProdutoResponseDTO {
 

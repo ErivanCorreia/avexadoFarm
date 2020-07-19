@@ -1,6 +1,6 @@
 package br.com.avexadoFarm.infrastructure.repository;
 
-import br.com.avexadoFarm.domain.model.Usuario;
+import br.com.avexadoFarm.domain.model.usuario.Usuario;
 
 import java.util.Optional;
 

@@ -1,6 +1,4 @@
-package br.com.avexadoFarm.domain.model;
-
-import br.com.avexadoFarm.domain.enumeration.TipoProduto;
+package br.com.avexadoFarm.domain.model.produto;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

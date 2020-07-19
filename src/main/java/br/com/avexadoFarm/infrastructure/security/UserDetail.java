@@ -1,6 +1,6 @@
 package br.com.avexadoFarm.infrastructure.security;
 
-import br.com.avexadoFarm.domain.model.Usuario;
+import br.com.avexadoFarm.domain.model.usuario.Usuario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 

@@ -1,17 +1,13 @@
-package br.com.avexadoFarm.domain.model;
+package br.com.avexadoFarm.domain.model.usuario;
 
-import br.com.avexadoFarm.domain.enumeration.Perfil;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "t_usuario")
@@ -31,16 +27,12 @@ public class Usuario implements Serializable {
     @NotNull
     private String email;
 
-    @NotNull
+    @ElementCollection(fetch=FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    @ElementCollection
-    @Fetch(FetchMode.JOIN)
-    @JoinTable(name = "t_perfil_usuario", joinColumns = @JoinColumn(name = "id_usuario"))
-    @Column(name = "perfil")
+    @CollectionTable(name = "t_perfil_usuario")
     private Set<Perfil> perfis = new HashSet<>();
 
     public Usuario() {
-
     }
 
     public Long getId() {
@@ -79,7 +71,7 @@ public class Usuario implements Serializable {
         return perfis;
     }
 
-    public void setPerfil(Perfil perfil) {
-        this.perfis.add(perfil);
+        public void setPerfis(Set<Perfil> perfis) {
+        this.perfis = perfis;
     }
 }
