@@ -3,22 +3,15 @@ package br.com.avexadoFarm.infrastructure.security.filter;
 import br.com.avexadoFarm.infrastructure.security.UserDetail;
 import br.com.avexadoFarm.infrastructure.security.service.UserDetailServiceImpl;
 import br.com.avexadoFarm.infrastructure.security.util.JWTUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import javax.servlet.Filter;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 import java.io.IOException;
 
 public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
