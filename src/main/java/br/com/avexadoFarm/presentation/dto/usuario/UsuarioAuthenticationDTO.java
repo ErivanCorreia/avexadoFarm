@@ -4,14 +4,12 @@ import br.com.avexadoFarm.domain.model.usuario.Perfil;
 
 import java.util.Set;
 
-public class UsuarioRequestDTO {
+public class UsuarioAuthenticationDTO {
 
     private String login;
     private String senha;
-    private String email;
-    private Set<Perfil> perfis;
 
-    public UsuarioRequestDTO() {
+    public UsuarioAuthenticationDTO() {
     }
 
     public String getLogin() {
@@ -30,19 +28,4 @@ public class UsuarioRequestDTO {
         this.senha = senha;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Set<Perfil> getPerfis() {
-        return perfis;
-    }
-
-    public void setPerfis(Set<Perfil> perfis) {
-        this.perfis = perfis;
-    }
 }
