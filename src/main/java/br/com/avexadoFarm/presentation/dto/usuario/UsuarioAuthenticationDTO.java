@@ -1,9 +1,5 @@
 package br.com.avexadoFarm.presentation.dto.usuario;
 
-import br.com.avexadoFarm.domain.model.usuario.Perfil;
-
-import java.util.Set;
-
 public class UsuarioAuthenticationDTO {
 
     private String login;
