@@ -2,11 +2,11 @@ package br.com.avexadoFarm.infrastructure.security.util;
 
 
 import br.com.avexadoFarm.application.configuration.ApplicationConfigurationProperties;
-import br.com.avexadoFarm.application.configuration.ApplicationConfigurationProperties.JwtToken;
 import br.com.avexadoFarm.infrastructure.security.UserDetail;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -17,14 +17,16 @@ public class JWTUtil {
     public static final String AUTH = "Authorization";
     public static final String BEARER = "Bearer ";
 
-    private ApplicationConfigurationProperties applicationConfigurationProperties;
+    @Autowired
+    private ApplicationConfigurationProperties properties;
 
     public String generateToken(UserDetail userDetail){
 
         return Jwts.builder()
                 .setSubject(userDetail.getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + getJwtToken().getExpriracao()))
-                .signWith(SignatureAlgorithm.HS512, getJwtToken().getSegredo())
+                .setClaims(Jwts.claims().setSubject(userDetail.getUsername()))
+                .setExpiration(new Date(System.currentTimeMillis() + properties.getExpiracao()))
+                .signWith(SignatureAlgorithm.HS512, properties.getSegredo())
                 .compact();
     }
 
@@ -52,16 +54,15 @@ public class JWTUtil {
     }
 
     private Claims getClaims(String token) {
+        Claims claims;
         try {
-            return Jwts.parser().setSigningKey(getJwtToken().getSegredo().getBytes()).parseClaimsJws(token).getBody();
+            claims =  Jwts.parser().setSigningKey(properties.getSegredo()).parseClaimsJws(token).getBody();
         }
         catch (Exception e) {
-            return null;
+            claims = null;
         }
+        return claims;
     }
 
-    public JwtToken getJwtToken() {
-        return applicationConfigurationProperties.getJwtToken();
-    }
 
 }
