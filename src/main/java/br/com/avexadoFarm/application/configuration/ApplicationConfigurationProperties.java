@@ -1,38 +1,58 @@
 package br.com.avexadoFarm.application.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-@Component
-@ConfigurationProperties("avexado-farm")
+@ConfigurationProperties(prefix="avexado-farm.jwt-token")
 public class ApplicationConfigurationProperties {
 
-    private JwtToken jwtToken = new JwtToken();
+    private String segredo;
+    private Long expiracao;
+    private PropiedadeProperties propriedade = new PropiedadeProperties();
 
-    public JwtToken getJwtToken() {
-        return jwtToken;
+    public String getSegredo() {
+        return segredo;
     }
 
-    public static class JwtToken {
-        private String segredo;
-        private Long expriracao;
+    public void setSegredo(String segredo) {
+        this.segredo = segredo;
+    }
 
-        public String getSegredo() {
-            return segredo;
+    public Long getExpiracao() {
+        return expiracao;
+    }
+
+    public void setExpiracao(Long expiracao) {
+        this.expiracao = expiracao;
+    }
+
+    public PropiedadeProperties getPropriedade() {
+        return propriedade;
+    }
+
+    public void setPropriedade(PropiedadeProperties propriedade) {
+        this.propriedade = propriedade;
+    }
+
+    public static class PropiedadeProperties {
+        private String nada;
+        private int numero;
+
+        public String getNada() {
+            return nada;
         }
 
-        public void setSegredo(String segredo) {
-            this.segredo = segredo;
+        public void setNada(String nada) {
+            this.nada = nada;
         }
 
-        public Long getExpriracao() {
-            return expriracao;
+        public int getNumero() {
+            return numero;
         }
 
-        public void setExpriracao(Long expriracao) {
-            this.expriracao = expriracao;
+        public void setNumero(int numero) {
+            this.numero = numero;
         }
     }
 }
