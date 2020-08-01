@@ -29,7 +29,8 @@ public class Usuario implements Serializable {
 
     @ElementCollection(fetch=FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "t_perfil_usuario")
+    @CollectionTable(name = "t_perfil_usuario", joinColumns = @JoinColumn(name = "id_usuario"))
+    @Column(name = "perfil")
     private Set<Perfil> perfis = new HashSet<>();
 
     public Usuario() {
@@ -71,7 +72,7 @@ public class Usuario implements Serializable {
         return perfis;
     }
 
-        public void setPerfis(Set<Perfil> perfis) {
+    public void setPerfis(Set<Perfil> perfis) {
         this.perfis = perfis;
     }
 }
