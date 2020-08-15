@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -21,6 +22,16 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<Object> ObjectNotFound(ObjectNotFoundException exception, ServletWebRequest request) {
         return handlerExcepion(exception, "erro.recurso-nao-encontrado", HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<Object> userOrPasswordIncorrect(RuntimeException exception, ServletWebRequest request) {
+        return handlerExcepion(exception, "security.usuario-senha-incorreto", HttpStatus.FORBIDDEN, request);
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Object> genericException(RuntimeException exception, ServletWebRequest request) {
+        return handlerExcepion(exception, "erro.operacao-invalida", HttpStatus.BAD_REQUEST, request);
     }
 
     public ResponseEntity<Object> handlerExcepion(Exception exception, String message, HttpStatus status, ServletWebRequest request) {
