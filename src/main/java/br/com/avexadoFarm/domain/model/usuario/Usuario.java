@@ -4,6 +4,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -25,6 +26,7 @@ public class Usuario implements Serializable {
     private String senha;
 
     @NotNull
+    @Email
     private String email;
 
     @ElementCollection(fetch=FetchType.EAGER)
