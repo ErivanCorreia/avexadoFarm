@@ -3,10 +3,10 @@ package br.com.avexadoFarm.infrastructure.security.filter;
 import br.com.avexadoFarm.infrastructure.security.UserDetail;
 import br.com.avexadoFarm.infrastructure.security.service.UserDetailServiceImpl;
 import br.com.avexadoFarm.infrastructure.security.util.JWTUtil;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -14,17 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
+public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
+    @Autowired
     private JWTUtil jwtUtil;
 
+    @Autowired
     private UserDetailServiceImpl userDetailService;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil, UserDetailServiceImpl userDetailsService) {
-        super(authenticationManager);
-        this.jwtUtil = jwtUtil;
-        this.userDetailService = userDetailsService;
-    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
