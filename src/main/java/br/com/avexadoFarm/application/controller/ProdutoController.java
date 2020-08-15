@@ -1,10 +1,10 @@
 package br.com.avexadoFarm.application.controller;
 
 import br.com.avexadoFarm.application.service.ProdutoServiceImpl;
-import br.com.avexadoFarm.domain.model.Produto;
+import br.com.avexadoFarm.domain.model.produto.Produto;
 import br.com.avexadoFarm.infrastructure.service.ConverterService;
-import br.com.avexadoFarm.presentation.ProdutoRequestDTO;
-import br.com.avexadoFarm.presentation.ProdutoResponseDTO;
+import br.com.avexadoFarm.presentation.dto.produto.ProdutoRequestDTO;
+import br.com.avexadoFarm.presentation.dto.produto.ProdutoResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

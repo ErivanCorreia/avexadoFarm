@@ -1,8 +1,12 @@
-package br.com.avexadoFarm.domain.model;
+package br.com.avexadoFarm.domain.model.produto;
 
-import br.com.avexadoFarm.domain.enumeration.TipoProduto;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
