@@ -15,7 +15,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: seuEmail
-    password: suaSenha
+    password: seuEmail
     properties:
       mail:
         smtp:
@@ -27,7 +27,7 @@ server:
   port: 8080
 
 avexado-farm:
-  jwt-token:
+  token:
     segredo: segredo-aqui
-    expiracao: expiracao-aqui
+    expiracao: 86400000
 
