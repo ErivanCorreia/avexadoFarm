@@ -19,6 +19,9 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implement
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private EmailServiceImpl emailService;
+
     @Override
     public Usuario buscarPorLogin(String login) {
         Optional<Usuario> usuario = getRepository().findByLogin(login);
@@ -34,6 +37,7 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implement
         String senhaEncriptada = bCryptPasswordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaEncriptada);
 
+        emailService.sendSimpleMessage(usuario.getEmail(), "Criação de Usuário", "Usuário criado com sucesso "+usuario.getLogin());
         return super.save(usuario);
     }
 
