@@ -25,8 +25,8 @@ public class JWTUtil {
         return Jwts.builder()
                 .setSubject(userDetail.getUsername())
                 .setClaims(Jwts.claims().setSubject(userDetail.getUsername()))
-                .setExpiration(new Date(System.currentTimeMillis() + properties.getExpiracao()))
-                .signWith(SignatureAlgorithm.HS512, properties.getSegredo())
+                .setExpiration(new Date(System.currentTimeMillis() + properties.getToken().getExpiracao()))
+                .signWith(SignatureAlgorithm.HS512, properties.getToken().getSegredo())
                 .compact();
     }
 
@@ -56,7 +56,7 @@ public class JWTUtil {
     private Claims getClaims(String token) {
         Claims claims;
         try {
-            claims =  Jwts.parser().setSigningKey(properties.getSegredo()).parseClaimsJws(token).getBody();
+            claims =  Jwts.parser().setSigningKey(properties.getToken().getSegredo()).parseClaimsJws(token).getBody();
         }
         catch (Exception e) {
             claims = null;
