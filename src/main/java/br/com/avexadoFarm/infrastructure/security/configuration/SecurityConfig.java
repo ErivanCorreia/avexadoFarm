@@ -2,11 +2,9 @@ package br.com.avexadoFarm.infrastructure.security.configuration;
 
 import br.com.avexadoFarm.infrastructure.security.filter.JWTAuthenticationFilter;
 import br.com.avexadoFarm.infrastructure.security.service.UserDetailServiceImpl;
-import br.com.avexadoFarm.infrastructure.security.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

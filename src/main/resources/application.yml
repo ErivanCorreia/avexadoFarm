@@ -5,7 +5,7 @@ spring:
     password: ${DB_PASSWORD:postgres}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -14,3 +14,9 @@ spring:
 
 server:
   port: 8080
+
+avexado-farm:
+  jwt-token:
+    segredo:
+    expiracao:
+
