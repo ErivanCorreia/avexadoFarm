@@ -1,12 +1,12 @@
-package br.com.avexadoFarm.application.service;
+package br.com.avexadoFarm.infrastructure.service;
 
 import br.com.avexadoFarm.application.configuration.ApplicationConfigurationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class EmailServiceImpl {
 
     @Autowired
