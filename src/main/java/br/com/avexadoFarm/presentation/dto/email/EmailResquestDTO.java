@@ -3,7 +3,7 @@ package br.com.avexadoFarm.presentation.dto.email;
 public class EmailResquestDTO {
 
     private String assunto;
-    private String menssagem;
+    private String mensagem;
     private String destinatario;
 
     public EmailResquestDTO() {
@@ -11,7 +11,7 @@ public class EmailResquestDTO {
 
     public EmailResquestDTO(String assunto, String menssagem, String destinatario) {
         this.assunto = assunto;
-        this.menssagem = menssagem;
+        this.mensagem = menssagem;
         this.destinatario = destinatario;
     }
 
@@ -23,12 +23,12 @@ public class EmailResquestDTO {
         this.assunto = assunto;
     }
 
-    public String getMenssagem() {
-        return menssagem;
+    public String getMensagem() {
+        return mensagem;
     }
 
-    public void setMenssagem(String menssagem) {
-        this.menssagem = menssagem;
+    public void setMensagem(String menssagem) {
+        this.mensagem = menssagem;
     }
 
     public String getDestinatario() {

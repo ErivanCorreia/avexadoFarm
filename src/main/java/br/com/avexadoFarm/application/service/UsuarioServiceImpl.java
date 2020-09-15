@@ -3,7 +3,9 @@ package br.com.avexadoFarm.application.service;
 import br.com.avexadoFarm.domain.model.usuario.Usuario;
 import br.com.avexadoFarm.domain.service.UsuarioService;
 import br.com.avexadoFarm.infrastructure.exception.ObjectNotFoundException;
+import br.com.avexadoFarm.infrastructure.factory.EmailFactory;
 import br.com.avexadoFarm.infrastructure.repository.UsuarioRepository;
+import br.com.avexadoFarm.infrastructure.service.EmailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implement
     @Autowired
     private EmailServiceImpl emailService;
 
+    @Autowired
+    private EmailFactory emailFactory;
+
     @Override
     public Usuario buscarPorLogin(String login) {
         Optional<Usuario> usuario = getRepository().findByLogin(login);
@@ -37,7 +42,7 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, Long> implement
         String senhaEncriptada = bCryptPasswordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaEncriptada);
 
-        emailService.sendSimpleMessage(usuario.getEmail(), "Criação de Usuário", "Usuário criado com sucesso "+usuario.getLogin());
+        emailService.send(emailFactory.createRegistroUsuario(usuario));
         return super.save(usuario);
     }
 

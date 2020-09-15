@@ -1,10 +1,13 @@
 package br.com.avexadoFarm.infrastructure.service;
 
-import br.com.avexadoFarm.application.configuration.ApplicationConfigurationProperties;
+import br.com.avexadoFarm.presentation.dto.email.EmailResquestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 @Service
 public class EmailServiceImpl {
@@ -12,16 +15,20 @@ public class EmailServiceImpl {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Autowired
-    private ApplicationConfigurationProperties properties;
+    public void send(EmailResquestDTO emailResquestDTO) {
 
-    public void sendSimpleMessage(String destinatario, String assunto, String mensagem) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setSubject(assunto);
-        message.setText(mensagem);
-        message.setTo(destinatario);
+        try {
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, "UTF-8");
 
-        javaMailSender.send(message);
+            mimeMessageHelper.setSubject(emailResquestDTO.getAssunto());
+            mimeMessageHelper.setText(emailResquestDTO.getMensagem(), true);
+            mimeMessageHelper.setTo(emailResquestDTO.getDestinatario());
+
+            javaMailSender.send(mimeMessage);
+        } catch (MessagingException messagingException) {
+            messagingException.printStackTrace();
+        }
     }
 
 
