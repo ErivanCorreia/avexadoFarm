@@ -52,7 +52,7 @@ public class ProdutoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoResponseDTO> update(@PathVariable Long id,
-            @RequestBody ProdutoResponseDTO produtoRequestDTO) {
+            @RequestBody ProdutoRequestDTO produtoRequestDTO) {
         Produto produto = converterService.converter(produtoRequestDTO, Produto.class);
         Produto produtoAtualizado = produtoServiceImpl.update(id, produto);
 
