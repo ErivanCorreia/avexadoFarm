@@ -1,9 +1,7 @@
-INSERT INTO t_usuario (id, email, login, senha)
-VALUES (1, 'erivann47@gmail.com', 'erivan.junior', '$2y$12$amuWqoRckKwfpXtUZPB0u..TJBX3yc9BANUoFcAk4wXfPrDOtKaO2');
-
-INSERT INTO avexado.t_perfil_usuario (id_usuario, perfil)
-select
-    id, 'ROLE_ADMIN'
-from t_usuario
-where login = 'erivan.junior'
-and email = 'erivann47@gmail.com';
+CREATE TABLE avexado.t_produto (
+	id BIGSERIAL not null,
+	nome VARCHAR(128) not null,
+	descricao VARCHAR(255),
+	tipo VARCHAR(128) not null,
+	CONSTRAINT pk_t_produto PRIMARY KEY(id)
+);
