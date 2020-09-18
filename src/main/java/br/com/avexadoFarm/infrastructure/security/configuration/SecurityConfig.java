@@ -2,7 +2,6 @@ package br.com.avexadoFarm.infrastructure.security.configuration;
 
 import br.com.avexadoFarm.infrastructure.security.filter.JWTAuthenticationFilter;
 import br.com.avexadoFarm.infrastructure.security.service.UserDetailServiceImpl;
-import br.com.avexadoFarm.infrastructure.security.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests().antMatchers("/tokens/**").permitAll()
+                .and().authorizeRequests().antMatchers(HttpMethod.POST, "/usuarios/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

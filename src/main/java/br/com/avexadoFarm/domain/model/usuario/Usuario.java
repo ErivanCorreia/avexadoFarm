@@ -1,9 +1,17 @@
 package br.com.avexadoFarm.domain.model.usuario;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ElementCollection;
+import javax.persistence.FetchType;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -11,7 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "t_usuario")
+@Table(name = "t_usuario", schema = "avexado")
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -31,7 +39,7 @@ public class Usuario implements Serializable {
 
     @ElementCollection(fetch=FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "t_perfil_usuario", joinColumns = @JoinColumn(name = "id_usuario"))
+    @CollectionTable(name = "t_perfil_usuario", schema = "avexado", joinColumns = @JoinColumn(name = "id_usuario"))
     @Column(name = "perfil")
     private Set<Perfil> perfis = new HashSet<>();
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,6 +33,11 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Object> genericException(RuntimeException exception, ServletWebRequest request) {
         return handlerExcepion(exception, "erro.operacao-invalida", HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<Object> genericException(AccessDeniedException exception, ServletWebRequest request) {
+        return handlerExcepion(exception, "security.acesso-negado", HttpStatus.FORBIDDEN, request);
     }
 
     public ResponseEntity<Object> handlerExcepion(Exception exception, String message, HttpStatus status, ServletWebRequest request) {

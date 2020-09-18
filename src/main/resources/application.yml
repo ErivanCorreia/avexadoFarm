@@ -4,13 +4,28 @@ spring:
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:postgres}
   jpa:
-    hibernate:
-      ddl-auto: update
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    open-in-view: false
-    generate-ddl: false
+  flyway:
+    schemas: public
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: email-remetente
+    password: senha-email-remetente
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 server:
   port: 8080
+
+avexado-farm:
+  token:
+    segredo: segredo-aqui
+    expiracao: 86400000
+
