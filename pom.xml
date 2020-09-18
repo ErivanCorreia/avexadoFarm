@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.avexadoFarm</groupId>
 	<artifactId>avexadoFarm</artifactId>
-	<version>0.0.1</version>
+	<version>1.2.0</version>
     <packaging>jar</packaging>
 	<name>avexadoFarm</name>
 	<description>Projeto simples Spring para agrupamento de técnicas e tecnologias para melhoria e prática de aprendizado</description>
