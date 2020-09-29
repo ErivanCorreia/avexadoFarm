@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -25,7 +26,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
         return handlerExcepion(exception, "erro.recurso-nao-encontrado", HttpStatus.NOT_FOUND, request);
     }
 
-    @ExceptionHandler(BadCredentialsException.class)
+    @ExceptionHandler({BadCredentialsException.class, InternalAuthenticationServiceException.class})
     public ResponseEntity<Object> userOrPasswordIncorrect(RuntimeException exception, ServletWebRequest request) {
         return handlerExcepion(exception, "security.usuario-senha-incorreto", HttpStatus.FORBIDDEN, request);
     }
