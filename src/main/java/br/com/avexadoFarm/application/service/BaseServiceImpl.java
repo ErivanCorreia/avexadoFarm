@@ -3,6 +3,7 @@ package br.com.avexadoFarm.application.service;
 import br.com.avexadoFarm.domain.service.BaseService;
 import br.com.avexadoFarm.infrastructure.exception.ObjectNotFoundException;
 import br.com.avexadoFarm.infrastructure.repository.BaseRepository;
+import com.querydsl.core.types.Predicate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

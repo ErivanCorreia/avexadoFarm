@@ -2,9 +2,12 @@ package br.com.avexadoFarm.application.controller;
 
 import br.com.avexadoFarm.application.service.ProdutoServiceImpl;
 import br.com.avexadoFarm.domain.model.produto.Produto;
+import br.com.avexadoFarm.infrastructure.search.annotation.SearchPredicate;
 import br.com.avexadoFarm.infrastructure.service.ConverterService;
+import br.com.avexadoFarm.presentation.dto.produto.BuscaDTO;
 import br.com.avexadoFarm.presentation.dto.produto.ProdutoRequestDTO;
 import br.com.avexadoFarm.presentation.dto.produto.ProdutoResponseDTO;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +25,14 @@ public class ProdutoController {
     @Autowired
     private ConverterService converterService;
 
+    @Autowired
+    private SearchPredicate searchPredicate;
+
     @GetMapping
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USUARIO')")
-    public ResponseEntity<Page<ProdutoResponseDTO>> findAll(Pageable pageable) {
-        Page<Produto> produtos = produtoServiceImpl.findAll(pageable);
+    public ResponseEntity<Page<ProdutoResponseDTO>> findAll(BuscaDTO buscaDTO, Pageable pageable) {
+        BooleanExpression predicate = searchPredicate.getPredicate(buscaDTO);
+        Page<Produto> produtos = produtoServiceImpl.findAll(predicate, pageable);
         Page<ProdutoResponseDTO> produtoResponseDTOS = converterService.
                 converter(produtos, ProdutoResponseDTO.class);
         return ResponseEntity.ok(produtoResponseDTOS);

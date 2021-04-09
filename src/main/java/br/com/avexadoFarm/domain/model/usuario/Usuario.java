@@ -1,5 +1,7 @@
 package br.com.avexadoFarm.domain.model.usuario;
 
+import br.com.avexadoFarm.domain.model.usuario.Perfil;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
